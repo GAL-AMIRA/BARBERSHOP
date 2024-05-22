@@ -1,185 +1,248 @@
 <!DOCTYPE html>
 <html lang="he">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ברברשופ</title>
-  <link rel="stylesheet" href="stylesheet.css" />
-</head>
-<body>
-  <header>
-    <nav>
-      <div class="menu-icon">☰</div>
-      <div class="logo">
-        <img src="./img/LOGO-CLEAR.png" alt="לוגו" class="logo-img" />
-      </div>
-      <ul class="nav-links">
-        <li><a href="#about">קצת עלינו</a></li>
-        <li><a href="#appointments">לקביעת תורים</a></li>
-        <li><a href="#courses">הקורסים שלנו</a></li>
-        <li><a href="#products">החנות שלנו</a></li>
-      </ul>
-      <div class="cart" onclick="openCartModal()">
-        <img src="./img/CART-IMG.png" alt="סל קניות" class="cart-icon" />
-        <span class="cart-count">0</span>
-      </div>
-      <div class="search">
-        <img src="./img/search.png" alt="חיפוש" class="search-icon" />
-      </div>
-    </nav>
-    <div class="search-bar">
-      <input type="text" placeholder="חפש מוצר..." id="search-input" />
-      <button onclick="searchProduct()">חפש</button>
-    </div>
-  </header>
-
-  <main>
-    <section id="about">
-      <div class="background-image">
-        <h1>קצת עלינו</h1>
-        <p>אנו משקיעים בכל לקוח ומתאימים לכל לקוח את התספורת לראש.</p>
-        <button class="read-more">ראה עוד</button>
-      </div>
-      <div class="more-info">
-        <h2>קצת עלינו</h2>
-        <button class="close">X</button>
-        <p>מידע נוסף על הברברשופ...</p>
-      </div>
-    </section>
-
-    <section id="appointments">
-      <h2>לקביעת תורים</h2>
-      <div class="barbers">
-        <div class="barber">
-          <img src="./img/BARBER1.jpeg" alt="ספר 1" />
-          <p>ג'וש למונקה</p>
-          <button>קביעת תור</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ברברשופ</title>
+    <link rel="stylesheet" href="stylesheet.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="menu-icon" aria-label="תפריט">☰</div>
+        <div class="logo">
+          <img src="./img/LOGO-CLEAR.png" alt="לוגו" class="logo-img" />
         </div>
-        <div class="barber">
-          <img src="./img/BARBER2.jpeg" alt="ספר 2" />
-          <p>ג'וש או פי</p>
-          <button>קביעת תור</button>
+        <ul class="nav-links">
+          <li><a href="#about">קצת עלינו</a></li>
+          <li><a href="#appointments">לקביעת תורים</a></li>
+          <li><a href="#courses">הקורסים שלנו</a></li>
+          <li><a href="#products">החנות שלנו</a></li>
+        </ul>
+        <div class="cart" aria-label="סל קניות" onclick="openCartModal()">
+          <img src="./img/CART-IMG.png" alt="סל קניות" class="cart-icon" />
+          <span class="cart-count">0</span>
         </div>
+        <div class="search">
+          <img src="./img/search.png" alt="חיפוש" class="search-icon" />
+        </div>
+      </nav>
+      <div class="search-bar">
+        <input type="text" placeholder="חפש מוצר..." id="search-input" />
+        <button onclick="searchProduct()">חפש</button>
       </div>
-    </section>
+    </header>
 
-    <section id="courses">
-      <h2>הקורסים שלנו</h2>
-      <div class="course" style="background-image: url('./img/Barbershop-background.jpg')">
-        <h3>קורס 1</h3>
-        <p>תיאור הקורס</p>
-        <button class="read-more">ראה עוד</button>
-      </div>
-      <div class="course" style="background-image: url('./img/images.jpeg')">
-        <h3>קורס 2</h3>
-        <p>תיאור הקורס</p>
-        <button class="read-more">ראה עוד</button>
-      </div>
-      <div class="course" style="background-image: url('./img/img.avif')">
-        <h3>קורס 3</h3>
-        <p>תיאור הקורס</p>
-        <button class="read-more">ראה עוד</button>
-      </div>
-    </section>
+    <main>
+      <section id="about">
+        <div class="background-image">
+          <h1>קצת עלינו</h1>
+          <p>אנו משקיעים בכל לקוח ומתאימים לכל לקוח את התספורת לראש.</p>
+          <button class="read-more">ראה עוד</button>
+        </div>
+        <div class="more-info">
+          <h2>קצת עלינו</h2>
+          <button class="close">X</button>
+          <p>מידע נוסף על הברברשופ...</p>
+        </div>
+      </section>
 
-    <section id="products">
-      <h2>אולי יעניין אתכם</h2>
-      <div class="products-container">
-        <button class="scroll-button left">⬅</button>
-        <div class="products-scroll">
-          <div class="product" onclick="openProductModal('שמן לזקן', 'img/OIL.webp', 'תיאור מפורט על שמן לזקן...', 80)">
-            <img src="img/OIL.webp" alt="שמן לזקן" />
-            <h3>שמן לזקן</h3>
-            <p>מחיר: ₪80</p>
-            <button onclick="addToCart(event, 'שמן לזקן', 80)">הוסף לסל</button>
+      <section id="appointments">
+        <h2>לקביעת תורים</h2>
+        <div class="barbers">
+          <div class="barber">
+            <img src="./img/BARBER1.jpeg" alt="ספר 1" />
+            <p>ג'וש למונקה</p>
+            <button onclick="bookAppointment('ג\'וש למונקה')">קביעת תור</button>
           </div>
-          <div class="product" onclick="openProductModal('קרם לחות', 'img/CREAM.webp', 'תיאור מפורט על קרם לחות...', 90)">
-            <img src="./img/CREAM.webp" alt="קרם לחות" />
-            <h3>קרם לחות</h3>
-            <p>מחיר: ₪90</פ>
-            <button onclick="addToCart(event, 'קרם לחות', 90)">הוסף לסל</button>
-          </div>
-          <div class="product" onclick="openProductModal('וואקס חימר', 'img/CLAY WAX.webp', 'תיאור מפורט על וואקס חימר...', 80)">
-            <img src="./img/CLAY WAX.webp" alt="וואקס חימר" />
-            <h3>וואקס חימר</h3>
-            <p>מחיר: ₪80</p>
-            <button onclick="addToCart(event, 'וואקס חימר', 80)">הוסף לסל</button>
-          </div>
-          <div class="product" onclick="openProductModal('וואקס מבריק', 'img/WAR WAX.webp', 'תיאור מפורט על וואקס מבריק...', 80)">
-            <img src="./img/WAR WAX.webp" alt="וואקס מבריק" />
-            <h3>וואקס מבריק</h3>
-            <p>מחיר: ₪80</p>
-            <button onclick="addToCart(event, 'וואקס מבריק', 80)">הוסף לסל</button>
-          </div>
-          <div class="product" onclick="openProductModal('מסרק טקסטורה', 'img/COMB.webp', 'תיאור מפורט על מסרק טקסטורה...', 50)">
-            <img src="./img/COMB.webp" alt="מסרק טקסטורה" />
-            <h3>מסרק טקסטורה</h3>
-            <p>מחיר: ₪50</p>
-            <button onclick="addToCart(event, 'מסרק טקסטורה', 50)">הוסף לסל</button>
-          </div>
-          <div class="product" onclick="openProductModal('מיי מלח', 'img/SEA.webp', 'תיאור מפורט על מיי מלח...', 80)">
-            <img src="./img/SEA.webp" alt="מיי מלח" />
-            <h3>מיי מלח</h3>
-            <p>מחיר: ₪80</p>
-            <button onclick="addToCart(event, 'מיי מלח', 80)">הוסף לסל</button>
-          </div>
-          <div class="product" onclick="openProductModal('חולצה אוברסייז', 'img/T-SHIRT.webp', 'תיאור מפורט על חולצה אוברסייז...', 70)">
-            <img src="./img/T-SHIRT.webp" alt="חולצה אוברסייז" />
-            <h3>חולצה אוברסייז</h3>
-            <p>מחיר: ₪70</p>
-            <button onclick="addToCart(event, 'חולצה אוברסייז', 70)">הוסף לסל</button>
-          </div>
-          <div class="product" onclick="openProductModal('קליפר מקצועי', 'img/professional hair clipper.webp', 'תיאור מפורט על קליפר מקצועי...', 470)">
-            <img src="./img/professional hair clipper.webp" alt="קליפר מקצועי" />
-            <h3>קליפר מקצועי</h3>
-            <p>מחיר: ₪470</p>
-            <button onclick="addToCart(event, 'קליפר מקצועי', 470)">הוסף לסל</button>
-          </div>
-          <div class="product" onclick="openProductModal('מברשת שיער', 'img/BRUSH.webp', 'תיאור מפורט על מברשת שיער...', 120)">
-            <img src="./img/BRUSH.webp" alt="מברשת שיער" />
-            <h3>מברשת שיער</h3>
-            <p>מחיר: ₪120</p>
-            <button onclick="addToCart(event, 'מברשת שיער', 120)">הוסף לסל</button>
-          </div>
-          <div class="product" onclick="openProductModal('חולצה ריקמה שלפא', 'img/T-SHIRT.webp', 'תיאור מפורט על חולצה ריקמה שלפא...', 250)">
-            <img src="./img/T-SHIRT.webp" alt="חולצה ריקמה שלפא" />
-            <h3>חולצה ריקמה שלפא</h3>
-            <p>מחיר: ₪250</p>
-            <button onclick="addToCart(event, 'חולצה ריקמה שלפא', 250)">הוסף לסל</button>
+          <div class="barber">
+            <img src="./img/BARBER2.jpeg" alt="ספר 2" />
+            <p>ג'וש או פי</p>
+            <button onclick="bookAppointment('ג\'וש או פי')">קביעת תור</button>
           </div>
         </div>
-        <button class="scroll-button right">➡</button>
+      </section>
+
+      <section id="courses">
+        <h2>הקורסים שלנו</h2>
+        <div
+          class="course"
+          style="background-image: url('./img/Barbershop-background.jpg')"
+        >
+          <h3>קורס 1</h3>
+          <p>תיאור הקורס</p>
+          <button class="read-more">ראה עוד</button>
+        </div>
+        <div class="course" style="background-image: url('./img/images.jpeg')">
+          <h3>קורס 2</h3>
+          <p>תיאור הקורס</p>
+          <button class="read-more">ראה עוד</button>
+        </div>
+        <div class="course" style="background-image: url('./img/img.avif')">
+          <h3>קורס 3</h3>
+          <p>תיאור הקורס</p>
+          <button class="read-more">ראה עוד</button>
+        </div>
+      </section>
+
+      <section id="products">
+        <h2>אולי יעניין אתכם</h2>
+        <div class="products-container">
+          <button class="scroll-button left">⬅</button>
+          <div class="products-scroll">
+            <div
+              class="product"
+              onclick="openProductModal('שמן לזקן', 'img/OIL.webp', 'תיאור מפורט על שמן לזקן...', 80)"
+            >
+              <img src="img/OIL.webp" alt="שמן לזקן" />
+              <h3>שמן לזקן</h3>
+              <p>מחיר: ₪80</p>
+              <button onclick="addToCart(event, 'שמן לזקן', 80)">
+                הוסף לסל
+              </button>
+            </div>
+            <div
+              class="product"
+              onclick="openProductModal('קרם לחות', 'img/CREAM.webp', 'תיאור מפורט על קרם לחות...', 90)"
+            >
+              <img src="./img/CREAM.webp" alt="קרם לחות" />
+              <h3>קרם לחות</h3>
+              <p>מחיר: ₪90</p>
+              <button onclick="addToCart(event, 'קרם לחות', 90)">
+                הוסף לסל
+              </button>
+            </div>
+            <div
+              class="product"
+              onclick="openProductModal('וואקס חימר', 'img/CLAY WAX.webp', 'תיאור מפורט על וואקס חימר...', 80)"
+            >
+              <img src="./img/CLAY WAX.webp" alt="וואקס חימר" />
+              <h3>וואקס חימר</h3>
+              <p>מחיר: ₪80</p>
+              <button onclick="addToCart(event, 'וואקס חימר', 80)">
+                הוסף לסל
+              </button>
+            </div>
+            <div
+              class="product"
+              onclick="openProductModal('וואקס מבריק', 'img/WAR WAX.webp', 'תיאור מפורט על וואקס מבריק...', 80)"
+            >
+              <img src="./img/WAR WAX.webp" alt="וואקס מבריק" />
+              <h3>וואקס מבריק</h3>
+              <p>מחיר: ₪80</p>
+              <button onclick="addToCart(event, 'וואקס מבריק', 80)">
+                הוסף לסל
+              </button>
+            </div>
+            <div
+              class="product"
+              onclick="openProductModal('מסרק טקסטורה', 'img/COMB.webp', 'תיאור מפורט על מסרק טקסטורה...', 50)"
+            >
+              <img src="./img/COMB.webp" alt="מסרק טקסטורה" />
+              <h3>מסרק טקסטורה</h3>
+              <p>מחיר: ₪50</p>
+              <button onclick="addToCart(event, 'מסרק טקסטורה', 50)">
+                הוסף לסל
+              </button>
+            </div>
+            <div
+              class="product"
+              onclick="openProductModal('מיי מלח', 'img/SEA.webp', 'תיאור מפורט על מיי מלח...', 80)"
+            >
+              <img src="./img/SEA.webp" alt="מיי מלח" />
+              <h3>מיי מלח</h3>
+              <p>מחיר: ₪80</p>
+              <button onclick="addToCart(event, 'מיי מלח', 80)">
+                הוסף לסל
+              </button>
+            </div>
+            <div
+              class="product"
+              onclick="openProductModal('חולצה אוברסייז', 'img/T-SHIRT.webp', 'תיאור מפורט על חולצה אוברסייז...', 70)"
+            >
+              <img src="./img/T-SHIRT.webp" alt="חולצה אוברסייז" />
+              <h3>חולצה אוברסייז</h3>
+              <p>מחיר: ₪70</p>
+              <button onclick="addToCart(event, 'חולצה אוברסייז', 70)">
+                הוסף לסל
+              </button>
+            </div>
+            <div
+              class="product"
+              onclick="openProductModal('קליפר מקצועי', 'img/professional hair clipper.webp', 'תיאור מפורט על קליפר מקצועי...', 470)"
+            >
+              <img
+                src="./img/professional hair clipper.webp"
+                alt="קליפר מקצועי"
+              />
+              <h3>קליפר מקצועי</h3>
+              <p>מחיר: ₪470</p>
+              <button onclick="addToCart(event, 'קליפר מקצועי', 470)">
+                הוסף לסל
+              </button>
+            </div>
+            <div
+              class="product"
+              onclick="openProductModal('מברשת שיער', 'img/BRUSH.webp', 'תיאור מפורט על מברשת שיער...', 120)"
+            >
+              <img src="./img/BRUSH.webp" alt="מברשת שיער" />
+              <h3>מברשת שיער</h3>
+              <p>מחיר: ₪120</p>
+              <button onclick="addToCart(event, 'מברשת שיער', 120)">
+                הוסף לסל
+              </button>
+            </div>
+            <div
+              class="product"
+              onclick="openProductModal('חולצה ריקמה שלפא', 'img/T-SHIRT.webp', 'תיאור מפורט על חולצה ריקמה שלפא...', 250)"
+            >
+              <img src="./img/T-SHIRT.webp" alt="חולצה ריקמה שלפא" />
+              <h3>חולצה ריקמה שלפא</h3>
+              <p>מחיר: ₪250</p>
+              <button onclick="addToCart(event, 'חולצה ריקמה שלפא', 250)">
+                הוסף לסל
+              </button>
+            </div>
+          </div>
+          <button class="scroll-button right">➡</button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <a href="#">תקנון</a>
+      <a href="#">צור קשר</a>
+      <a href="#">תנאי שירות</a>
+    </footer>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal" aria-hidden="true">
+      <div class="modal-content">
+        <span
+          class="close"
+          aria-label="סגור"
+          onclick="closeModal('productModal')"
+          >&times;</span
+        >
+        <h1 id="productModalTitle"></h1>
+        <img id="productModalImage" src="" alt="Product Image" />
+        <p id="productModalDescription"></p>
+        <button class="add-to-cart">הוסף לסל</button>
       </div>
-    </section>
-  </main>
-
-  <footer>
-    <a href="#">תקנון</a>
-    <a href="#">צור קשר</a>
-    <a href="#">תנאי שירות</a>
-  </footer>
-
-  <!-- Product Modal -->
-  <div id="productModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('productModal')">&times;</span>
-      <h1 id="productModalTitle"></h1>
-      <img id="productModalImage" src="" alt="Product Image" />
-      <p id="productModalDescription"></p>
-      <button class="add-to-cart">הוסף לסל</button>
     </div>
-  </div>
 
-  <!-- Cart Modal -->
-  <div id="cartModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('cartModal')">&times;</span>
-      <h1>סל קניות</h1>
-      <div id="cartItems"></div>
-      <button onclick="checkout()">תשלום</button>
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal" aria-hidden="true">
+      <div class="modal-content">
+        <span class="close" aria-label="סגור" onclick="closeModal('cartModal')"
+          >&times;</span
+        >
+        <h1>סל קניות</h1>
+        <div id="cartItems"></div>
+        <button onclick="checkout()">תשלום</button>
+      </div>
     </div>
-  </div>
 
-  <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
