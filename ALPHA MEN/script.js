@@ -1,5 +1,5 @@
-// Initialize cartItems as an array
 let cartItems = [];
+
 document.addEventListener("DOMContentLoaded", () => {
   const readMoreButtons = document.querySelectorAll(".read-more");
   const closeButtons = document.querySelectorAll(".close");
@@ -17,7 +17,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   closeButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      closeModal(button.closest(".modal").id);
+      const modal = button.closest(".modal");
+      if (modal) {
+        closeModal(modal.id);
+      } else {
+        button.parentElement.style.display = "none";
+      }
     });
   });
 
@@ -45,13 +50,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (window.innerWidth > 768) {
       navLinks.style.display = "flex";
       navLinks.style.flexDirection = "row";
-      searchBar.style.display = "none"; // hide search bar on resize
+      searchBar.style.display = "none";
     } else {
       navLinks.style.display = "none";
     }
   });
 
-  // Initial check
   if (window.innerWidth > 768) {
     navLinks.style.display = "flex";
     navLinks.style.flexDirection = "row";
@@ -90,6 +94,16 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  window.addEventListener("click", (event) => {
+    const productModal = document.getElementById("productModal");
+    const cartModal = document.getElementById("cartModal");
+    if (event.target === productModal) {
+      closeModal("productModal");
+    } else if (event.target === cartModal) {
+      closeModal("cartModal");
+    }
+  });
 });
 
 function searchProduct() {
@@ -111,12 +125,20 @@ function addToCart(event, productName, productPrice) {
   let count = parseInt(cartCount.textContent);
   cartCount.textContent = count + 1;
 
-  // Add item to cart
+  const productImage = document.querySelector(
+    `.product img[alt="${productName}"]`
+  ).src;
+
   const itemIndex = cartItems.findIndex((item) => item.name === productName);
   if (itemIndex > -1) {
     cartItems[itemIndex].quantity += 1;
   } else {
-    cartItems.push({ name: productName, price: productPrice, quantity: 1 });
+    cartItems.push({
+      name: productName,
+      price: productPrice,
+      quantity: 1,
+      image: productImage,
+    });
   }
 
   updateCartModal();
@@ -133,7 +155,9 @@ function openProductModal(
   document.getElementById("productModalImage").src = productImage;
   document.getElementById("productModalDescription").textContent =
     productDescription;
-  document.querySelector("#productModal .add-to-cart").onclick = function () {
+  document.querySelector("#productModal .add-to-cart").onclick = function (
+    event
+  ) {
     addToCart(event, productName, productPrice);
     closeModal("productModal");
   };
@@ -143,11 +167,18 @@ function openProductModal(
 function closeModal(modalId) {
   const modal = document.getElementById(modalId);
   modal.style.display = "none";
+  if (modalId === "productModal") {
+    document.getElementById("productModalTitle").textContent = "";
+    document.getElementById("productModalImage").src = "";
+    document.getElementById("productModalDescription").textContent = "";
+    document.querySelector("#productModal .add-to-cart").onclick = null;
+  } else if (modalId === "cartModal") {
+    document.getElementById("cartItems").innerHTML = "";
+  }
 }
 
 function openCartModal() {
-  console.log("Opening cart modal"); // הוסף הודעה זו כדי לוודא שהפונקציה מתבצעת
-  updateCartModal(); // Ensure the cart is updated when opening
+  updateCartModal();
   const modal = document.getElementById("cartModal");
   modal.style.display = "block";
 }
@@ -161,6 +192,9 @@ function updateCartModal() {
     itemDiv.classList.add("cart-item");
 
     itemDiv.innerHTML = `
+      <img src="${item.image}" alt="${
+      item.name
+    }" style="width: 50px; height: auto; float: left; margin-right: 10px;">
       <p>${item.name}</p>
       <p>כמות: ${item.quantity}</p>
       <p>מחיר: ₪${item.price * item.quantity}</p>
@@ -206,5 +240,4 @@ function updateCartCount() {
 
 function checkout() {
   alert("ביצוע תשלום");
-  // Here you can add functionality to handle the checkout process
 }
