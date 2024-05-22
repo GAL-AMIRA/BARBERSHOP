@@ -4,7 +4,7 @@ body {
   margin: 0;
   padding: 0;
   direction: rtl;
-  background-color: #f0f0f0; /* צבע רקע אפור בטון */
+  background-color: #f0f0f0;
 }
 
 header {
@@ -24,37 +24,39 @@ header {
 }
 
 header.scrolled {
-  background-color: rgba(50, 50, 50, 0.9); /* צבע רקע אפור כהה עם שקיפות */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* השתקפות */
+  background-color: rgba(50, 50, 50, 0.9);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 nav {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   width: 100%;
   padding: 0 20px;
+  position: relative;
 }
 
 .logo {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  margin-bottom: 20px;
 }
 
 .logo img {
-  width: 100px; /* גודל הלוגו */
+  width: 100px;
   height: auto;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  margin: 0;
+  margin-top: 30px;
   padding: 0;
-  justify-content: flex-end;
+  justify-content: center;
   flex: 1;
-  flex-wrap: wrap; /* התאים את הלינקים בהתאם לגודל המסך */
+  flex-wrap: wrap;
 }
 
 .nav-links li {
@@ -66,11 +68,11 @@ nav {
   text-decoration: none;
   display: block;
   padding: 20px;
-  font-size: 1em; /* גודל כתב בסיסי */
+  font-size: 1em;
 }
 
 .nav-links a:hover {
-  background-color: #555; /* צבע אפור בהיר */
+  background-color: #555;
 }
 
 .cart {
@@ -84,7 +86,7 @@ nav {
 }
 
 .cart-icon {
-  width: 30px; /* גודל התמונה */
+  width: 30px;
   height: auto;
   cursor: pointer;
 }
@@ -110,7 +112,7 @@ nav {
 }
 
 .search-icon {
-  width: 30px; /* גודל התמונה */
+  width: 30px;
   height: auto;
   cursor: pointer;
 }
@@ -147,7 +149,7 @@ nav {
 
 main {
   margin-top: 60px;
-  padding-bottom: 100px; /* מרווח לתחתית הדף */
+  padding-bottom: 100px;
 }
 
 section {
@@ -175,7 +177,7 @@ section {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* שכבה שקופה מעל התמונה */
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .background-image h1 {
@@ -227,8 +229,8 @@ section {
 
 .barber img {
   border-radius: 50%;
-  width: 100%;
-  height: 100px; /* גודל התמונה קבוע */
+  width: 80%;
+  height: 50%;
 }
 
 .barber button {
@@ -251,7 +253,7 @@ section {
 }
 
 .product {
-  flex: 0 0 20%; /* גודל התמונה יהיה 20% מרוחב הקונטיינר */
+  flex: 0 0 20%;
   box-sizing: border-box;
   margin: 10px;
   padding: 10px;
@@ -294,7 +296,6 @@ section {
   right: 0;
 }
 
-/* Modal for Product Details */
 .modal {
   display: none;
   position: fixed;
@@ -304,15 +305,23 @@ section {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.37);
+}
+
+.modal img {
+  width: 65%;
 }
 
 .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
+  width: 50%;
+  height: 60%;
+  margin: 10% auto;
   padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
+  border: 1px solid #ddd4d4;
+  overflow: auto;
+  background-color: #000000d0;
+  text-align: center;
+  color: #ddd4d4;
 }
 
 .close {
@@ -335,7 +344,7 @@ footer {
   text-align: center;
   padding: 20px;
   width: 100%;
-  position: fixed; /* שינוי מ-absolute ל-fixed */
+  position: fixed;
   bottom: 0;
 }
 
@@ -345,7 +354,6 @@ footer a {
   margin: 0 10px;
 }
 
-/* Responsive styles */
 @media (max-width: 768px) {
   .nav-links {
     display: none;
@@ -364,23 +372,20 @@ footer a {
   .nav-links a {
     padding: 10px;
     text-align: center;
-    font-size: 0.8em; /* גודל כתב קטן יותר */
+    font-size: 0.8em;
   }
 
   .menu-icon {
     display: block;
-    color: black; /* צבע שחור לסמל שלוש הקווים */
+    color: black;
     margin-top: 35px;
-  }
-  footer {
-    margin-bottom: 1000px;
   }
 
   .logo {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    margin-top: 80px;
+    margin-top: 10px;
   }
 
   .cart {
@@ -394,10 +399,14 @@ footer a {
   }
 
   .scroll-button {
-    display: block;
+    display: none;
+  }
+
+  .products-scroll {
+    overflow-x: scroll;
   }
 
   .product {
-    flex: 0 0 45%; /* גודל התמונה יהיה 45% במצב של פלאפון */
+    flex: 0 0 45%;
   }
 }
