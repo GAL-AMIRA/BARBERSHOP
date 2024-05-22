@@ -410,3 +410,51 @@ footer a {
     flex: 0 0 45%;
   }
 }
+
+#register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#register h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+#register form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 400px;
+}
+
+#register label {
+  font-size: 1em;
+  margin-bottom: 5px;
+}
+
+#register input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+#register button {
+  width: 100%;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.manager-only,
+.barber-only {
+  display: none;
+}

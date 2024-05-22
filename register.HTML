@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="he">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>הרשמה לברברשופ</title>
+    <link rel="stylesheet" href="stylesheet.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="menu-icon" aria-label="תפריט">☰</div>
+        <div class="logo">
+          <img src="./img/LOGO-CLEAR.png" alt="לוגו" class="logo-img" />
+        </div>
+        <ul class="nav-links">
+          <li><a href="#about">קצת עלינו</a></li>
+          <li><a href="#appointments">לקביעת תורים</a></li>
+          <li><a href="#courses">הקורסים שלנו</a></li>
+          <li><a href="#products">החנות שלנו</a></li>
+          <li><a href="register.html">הרשמה</a></li>
+        </ul>
+        <div class="cart" aria-label="סל קניות" onclick="openCartModal()">
+          <img src="./img/CART-IMG.png" alt="סל קניות" class="cart-icon" />
+          <span class="cart-count">0</span>
+        </div>
+        <div class="search">
+          <img src="./img/search.png" alt="חיפוש" class="search-icon" />
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section id="register">
+        <h2>הרשמה</h2>
+        <form id="registrationForm" onsubmit="return registerUser()">
+          <label for="username">שם משתמש:</label>
+          <input type="text" id="username" name="username" required />
+
+          <label for="email">דואר אלקטרוני:</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="password">סיסמה:</label>
+          <input type="password" id="password" name="password" required />
+
+          <button type="submit">הרשם</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <a href="#">תקנון</a>
+      <a href="#">צור קשר</a>
+      <a href="#">תנאי שירות</a>
+    </footer>
+
+    <script>
+      function registerUser() {
+        const username = document.getElementById("username").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        // לשמור את הנתונים מקומית או לשלוח לשרת
+        localStorage.setItem("username", username);
+        localStorage.setItem("email", email);
+        localStorage.setItem("userType", "customer");
+
+        alert("ההרשמה בוצעה בהצלחה!");
+        window.location.href = "index.html"; // הפניה לעמוד הבית לאחר הרשמה
+        return false; // למנוע שליחת טופס בפורמט הרגיל
+      }
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -8,6 +8,43 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchIcon = document.querySelector(".search-icon");
   const searchBar = document.querySelector(".search-bar");
   const cartCount = document.querySelector(".cart-count");
+  const authLink = document.getElementById("auth-link");
+
+  // הוספת המשתמשים המוגדרים מראש
+  const predefinedUsers = [
+    { username: "גל עמירה", password: "GAL123456", userType: "manager" },
+    {
+      username: "JOSH.OP@GMAIL.COM",
+      password: "111222333",
+      userType: "barber",
+    },
+    { username: "GOSH@GMAIL.COM", password: "654321", userType: "barber" },
+  ];
+
+  predefinedUsers.forEach((user) => {
+    if (!localStorage.getItem(user.username)) {
+      localStorage.setItem(user.username, JSON.stringify(user));
+    }
+  });
+
+  const userType = localStorage.getItem("userType"); // יכול להיות 'manager', 'barber', 'customer'
+  const managerElements = document.querySelectorAll(".manager-only");
+  const barberElements = document.querySelectorAll(".barber-only");
+
+  if (userType === "manager") {
+    managerElements.forEach((el) => (el.style.display = "block"));
+  } else if (userType === "barber") {
+    barberElements.forEach((el) => (el.style.display = "block"));
+  } else {
+    managerElements.forEach((el) => (el.style.display = "none"));
+    barberElements.forEach((el) => (el.style.display = "none"));
+  }
+
+  if (isUserLoggedIn()) {
+    authLink.textContent = "התנתקות";
+  } else {
+    authLink.textContent = "התחברות";
+  }
 
   readMoreButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -106,20 +143,25 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-function searchProduct() {
-  const input = document.getElementById("search-input").value.toLowerCase();
-  const products = document.querySelectorAll(".product");
-  products.forEach((product) => {
-    const productName = product.querySelector("h3").textContent.toLowerCase();
-    if (productName.includes(input)) {
-      product.style.display = "block";
-    } else {
-      product.style.display = "none";
-    }
-  });
+function isUserLoggedIn() {
+  return localStorage.getItem("username") !== null;
+}
+
+function bookAppointment(barberName) {
+  if (!isUserLoggedIn()) {
+    alert("עליך להתחבר לפני קביעת תור.");
+    openLoginForm();
+    return;
+  }
+  // המשך פעולת קביעת התור
 }
 
 function addToCart(event, productName, productPrice) {
+  if (!isUserLoggedIn()) {
+    alert("עליך להתחבר לפני רכישת מוצר.");
+    openLoginForm();
+    return;
+  }
   event.stopPropagation();
   const cartCount = document.querySelector(".cart-count");
   let count = parseInt(cartCount.textContent);
@@ -142,6 +184,19 @@ function addToCart(event, productName, productPrice) {
   }
 
   updateCartModal();
+}
+
+function searchProduct() {
+  const input = document.getElementById("search-input").value.toLowerCase();
+  const products = document.querySelectorAll(".product");
+  products.forEach((product) => {
+    const productName = product.querySelector("h3").textContent.toLowerCase();
+    if (productName.includes(input)) {
+      product.style.display = "block";
+    } else {
+      product.style.display = "none";
+    }
+  });
 }
 
 function openProductModal(
@@ -240,4 +295,42 @@ function updateCartCount() {
 
 function checkout() {
   alert("ביצוע תשלום");
+}
+
+function openLoginForm() {
+  const modal = document.getElementById("loginModal");
+  modal.style.display = "block";
+}
+
+function loginUser() {
+  const username = document.getElementById("loginUsername").value;
+  const password = document.getElementById("loginPassword").value;
+
+  const user = JSON.parse(localStorage.getItem(username));
+
+  if (user && user.password === password) {
+    localStorage.setItem("username", username);
+    localStorage.setItem("userType", user.userType);
+    alert("התחברת בהצלחה!");
+    closeModal("loginModal");
+    window.location.href = "index.html"; // הפניה לעמוד הבית לאחר התחברות
+  } else {
+    alert("שם המשתמש או הסיסמה שגויים.");
+  }
+  return false; // למנוע שליחת טופס בפורמט הרגיל
+}
+
+function handleAuthLink() {
+  if (isUserLoggedIn()) {
+    logoutUser();
+  } else {
+    openLoginForm();
+  }
+}
+
+function logoutUser() {
+  localStorage.removeItem("username");
+  localStorage.removeItem("userType");
+  alert("התנתקת בהצלחה!");
+  window.location.href = "index.html"; // הפניה לעמוד הבית לאחר התנתקות
 }

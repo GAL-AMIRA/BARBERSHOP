@@ -13,11 +13,16 @@
         <div class="logo">
           <img src="./img/LOGO-CLEAR.png" alt="לוגו" class="logo-img" />
         </div>
-        <ul class="nav-links">
+        <ul class="nav-links" id="nav-links">
           <li><a href="#about">קצת עלינו</a></li>
           <li><a href="#appointments">לקביעת תורים</a></li>
           <li><a href="#courses">הקורסים שלנו</a></li>
           <li><a href="#products">החנות שלנו</a></li>
+          <li>
+            <a href="#" id="auth-link" onclick="handleAuthLink()">התחברות</a>
+          </li>
+          <li class="manager-only"><a href="#manage">ניהול</a></li>
+          <li class="barber-only"><a href="#barber-tools">כלים לברבר</a></li>
         </ul>
         <div class="cart" aria-label="סל קניות" onclick="openCartModal()">
           <img src="./img/CART-IMG.png" alt="סל קניות" class="cart-icon" />
@@ -240,6 +245,31 @@
         <h1>סל קניות</h1>
         <div id="cartItems"></div>
         <button onclick="checkout()">תשלום</button>
+      </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal" aria-hidden="true">
+      <div class="modal-content">
+        <span class="close" aria-label="סגור" onclick="closeModal('loginModal')"
+          >&times;</span
+        >
+        <h2>התחברות</h2>
+        <form id="loginForm" onsubmit="return loginUser()">
+          <label for="loginUsername">שם משתמש:</label>
+          <input type="text" id="loginUsername" name="loginUsername" required />
+
+          <label for="loginPassword">סיסמה:</label>
+          <input
+            type="password"
+            id="loginPassword"
+            name="loginPassword"
+            required
+          />
+
+          <button type="submit">התחבר</button>
+        </form>
+        <p>אין לך חשבון? <a href="register.html">הרשמה</a></p>
       </div>
     </div>
 
